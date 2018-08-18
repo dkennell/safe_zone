@@ -95,7 +95,8 @@ namespace :safe_zone do
       end
       CSV.foreach("tmp/#{file_name}") do |row|
         zipcode = row[2]
-        offense = row[5]
+        next unless zipcode.present? && zipcode.to_i != 0
+        offense = row[4]
         location = Location.find_or_create_by(zipcode: zipcode)
         # based on what the assault type is, add a number to the location's field
         case offense
