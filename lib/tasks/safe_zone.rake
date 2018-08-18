@@ -98,6 +98,21 @@ namespace :safe_zone do
         offense = row[5]
         location = Location.find_or_create_by(zipcode: zipcode)
         # based on what the assault type is, add a number to the location's field
+        case offense
+        when *assault_types
+          location.update(assault_count: location.assault_count + 1)
+        when *shooting_types
+          location.update(shooting_count: location.shooting_count + 1)
+        when *rape_types
+          location.update(rape_count: location.rape_count + 1)
+        when *theft_types
+          location.update(theft_count: location.theft_count + 1)
+        when *burglary_types
+          location.update(burglary_count: location.burglary_count + 1)
+        when *robbery_types
+          location.update(robbery_count: location.robbery_count + 1)
+        else     
+        end
       end
     end
     # get crime data 
