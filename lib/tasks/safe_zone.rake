@@ -1,7 +1,7 @@
 require 'open-uri'
 
 namespace :safe_zone do
-  assault_types = [
+  @assault_types = [
     'Assault  1st Degree',
     'Assault  2nd Degree',
     'Attempt to Commit Murder',
@@ -15,7 +15,7 @@ namespace :safe_zone do
     'Child Abuse-Aggravated-Family'
   ].freeze
 
-  theft_types = [
+  @theft_types = [
     'Auto Theft - 1st Degree',
     'Shoplifting - 4th Degree',
     'Shoplifting 3rd Degree',
@@ -52,7 +52,7 @@ namespace :safe_zone do
     'Theft-From Yards-4th Degree'
   ].freeze
 
-  burglary_types = [
+  @burglary_types = [
     'Burglary (Business) 2nd Degree',
     'Burglary (Business) 3rd Degree',
     'Burglary (Residence) 1st Degree',
@@ -62,18 +62,18 @@ namespace :safe_zone do
     'Domestic Burglary - 3rd Degree'
   ].freeze
 
-  robbery_types = [
+  @robbery_types = [
     'Robbery 1st Degree',
     'Robbery 2nd Degree',
     'Robbery 3rd Degree'
   ].freeze
 
-  shooting_types = [
+  @shooting_types = [
     'Shooting Into Occupied Building',
     'Throwing/Shooting into Occupied Vehicle'
   ].freeze
 
-  rape_types = [
+  @rape_types = [
     'Rape - 1st Degree',
     'Rape - 2nd Degree',
     'Sodomy - 1st Degree',
@@ -87,9 +87,15 @@ namespace :safe_zone do
     'west.csv': 'https://data.birminghamal.gov/dataset/b3fab069-4df4-4335-b972-eb2fef7ce218/resource/83d01fdd-222d-47b0-b50b-31cfe88b7d0f/download/open-data-portal---west-thru-jun-30-2018-csv.csv'
   }
 
-  desc "fetch crime data"
+  desc "fetch all data and generate scores"
   task fetch_data: :environment do
     Location.delete_all
+    fetch_crime_data
+    fetch_population_data
+    generate_location_scores
+  end
+
+  def fetch_crime_data
     URLS.keys.each do |file_name|
       open('tmp/' << file_name.to_s, 'wb') do |file|
         file << open(URLS[file_name]).read
@@ -101,17 +107,17 @@ namespace :safe_zone do
         location = Location.find_or_create_by(zipcode: zipcode)
         # based on what the assault type is, add a number to the location's field
         case offense
-        when *assault_types
+        when *@assault_types
           location.increment!(:assault_count)
-        when *shooting_types
+        when *@shooting_types
           location.increment!(:shooting_count)
-        when *rape_types
+        when *@rape_types
           location.increment!(:rape_count)
-        when *theft_types
+        when *@theft_types
           location.increment!(:theft_count)
-        when *burglary_types
+        when *@burglary_types
           location.increment!(:burglary_count)
-        when *robbery_types
+        when *@robbery_types
           location.increment!(:robbery_count)
         else     
         end
@@ -121,10 +127,16 @@ namespace :safe_zone do
     end
   end
 
-  desc 'generate scores'
-  task generate_scores: :environment do
-    Location.each do |location|
-      # do the algorithm
+  def fetch_population_data
+    CSV.foreach('csv/population_data.csv') do |row|
+      location = Location.find_by(zipcode: row[0])
+      if location.present?
+        location.update(population: row[1].to_i)
+      end
     end
   end
+
+  def generate_location_scores
+  end
 end
+
