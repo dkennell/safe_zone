@@ -1,12 +1,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<div id="home-form" class="container">
-<div id="home-form" class="row text-center">
-	<div class="col-sm-12">
-		<h1 class="font-italic">Safe Zone</h1>
-		<input class="text-center" id="zip-input" placeholder="Enter Zip"></input>
-		<h3>or</h3>
-		<button class="btn btn-primary">Use My Location</button>
-	</div>
-</div>
-</div>
+<form id="home-form">
+  <div class="container">
+    <div class="row text-center">
+    	<div class="col-sm-12">
+    		<h1><em>Safe Zone</em></h1>
+    		<input type="tel" name="zipcode" pattern=".{5}" class="text-center" id="zip-input" placeholder="Enter Zipcode" title="Please input 5 digits">
+    		<h3>or</h3>
+        <button type="button" value="Test Get Location" class="btn btn-primary" onclick="setLocation()" id="get-zip">Use My Location</button>
+        <input type="text" name="lat" class="hidden" id="lat">
+        <input type="text" name="lng" class="hidden" id="lng">
+        <br>
+        <br>
+        <br>
+        <input type="submit" value="GO" class="btn btn-primary" id="go-btn">
+    	</div>
+    </div>
+  </div>
+</form>
+
+<script>
+  let form = document.getElementById("home-form");
+  function setLocation(){
+    getLocation();
+  }
+
+  var zipcode = document.getElementById("get-zip");
+  function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            console.log(position.coords.latitude, position.coords.longitude);
+            document.getElementById("lat").value = position.coords.latitude;
+            document.getElementById("lng").value = position.coords.longitude;
+            form.submit();
+          });
+
+      } else {
+         alert("Geolocation is not supported by this browser.");
+      }
+  }
+</script>
