@@ -27,3 +27,29 @@
 		padding-top: 7.5%;
 	}
 }
+
+li {
+	list-style: none;
+}
+
+ul {
+	padding: 0;
+}
+
+h3 {
+	text-decoration: underline;
+}
+
+#location-show {
+	padding-top: 5%;
+}
+
+.stats-container{
+	display: flex;
+	padding: 0 15% 0 15%;
+
+	ul {
+	  flex-grow: 1;
+	}
+}
+
