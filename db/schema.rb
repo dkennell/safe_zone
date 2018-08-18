@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180818195531) do
+ActiveRecord::Schema.define(version: 20180818222319) do
 
   create_table "locations", force: :cascade do |t|
     t.integer "zipcode"
-    t.integer "score"
+    t.integer "score", default: 50
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "assault_count", default: 0
