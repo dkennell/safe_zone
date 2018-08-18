@@ -1,18 +1,33 @@
-<h1>
-    <%= @location.zipcode %>
-</h1>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<h1>Score: <%= @location.score %></h1>
+<div class="container">
+<div id="location-show" class="row text-center">
 
-<h1>Stats</h1>
-<hr/>
+<p>The zip code <strong><%= @location.zipcode %></strong> has a safety score of </p>
+
+<h1><%= @location.score %>/100</h1>
+
+<p>This neighborhood is <%= @location.score_phrase %></p>
+<h1>This is a Map!</h1>
+<h1>Even More Map</h1>
+<h1>Map, Map, Map</h1>
+
+<h3>Statistics</h3>
+<div class="stats-container">
 <ul>
-    <li>Theft
-    <li>Robbery
-    <li>Break-ins
-    <li>Murder
-    <li>Drug busts
+    <li>Thefts:  <%= @location.theft_count %></li>
+    <li>Robberies: <%= @location.robbery_count %></li>
+    <li>Break-ins:  <%= @location.burglary_count %></li>
 </ul>
-<hr/>
-
+<ul>
+	<li>Assaults: <%= @location.assault_count %></li>
+    <li>Rapes: <%= @location.rape_count %></li>
+    <li>Shootings:  <%= @location.shooting_count %></li>
+</ul>
+</div>
 <button>Want to help improve this score?</button>
+<br>
+<br>
+<p><a href="#">How we calculate safety scores</a></p>
+</div>
+</div>
