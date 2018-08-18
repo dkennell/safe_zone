@@ -89,6 +89,7 @@ namespace :safe_zone do
 
   desc "fetch crime data"
   task fetch_data: :environment do
+    Location.delete_all
     URLS.keys.each do |file_name|
       open('tmp/' << file_name.to_s, 'wb') do |file|
         file << open(URLS[file_name]).read
@@ -101,20 +102,22 @@ namespace :safe_zone do
         # based on what the assault type is, add a number to the location's field
         case offense
         when *assault_types
-          location.update(assault_count: location.assault_count + 1)
+          location.increment!(:assault_count)
         when *shooting_types
-          location.update(shooting_count: location.shooting_count + 1)
+          location.increment!(:shooting_count)
         when *rape_types
-          location.update(rape_count: location.rape_count + 1)
+          location.increment!(:rape_count)
         when *theft_types
-          location.update(theft_count: location.theft_count + 1)
+          location.increment!(:theft_count)
         when *burglary_types
-          location.update(burglary_count: location.burglary_count + 1)
+          location.increment!(:burglary_count)
         when *robbery_types
-          location.update(robbery_count: location.robbery_count + 1)
+          location.increment!(:robbery_count)
         else     
         end
+        print '.'
       end
+      puts "File #{file_name} processed."
     end
     # get crime data 
     # get csv
