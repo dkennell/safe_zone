@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 20180818195531) do
     t.integer "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "assault_count"
-    t.integer "shooting_count"
-    t.integer "rape_count"
-    t.integer "theft_count"
-    t.integer "burglary"
-    t.integer "robbery"
+    t.integer "assault_count", default: 0
+    t.integer "shooting_count", default: 0
+    t.integer "rape_count", default: 0
+    t.integer "theft_count", default: 0
+    t.integer "burglary_count", default: 0
+    t.integer "robbery_count", default: 0
   end
 
 end
