@@ -119,21 +119,12 @@ namespace :safe_zone do
       end
       puts "File #{file_name} processed."
     end
-    # get crime data 
-    # get csv
-    # for each zipcode in csv:
-    #   make location
-    #   make stats collection
-    #     for each type array
-    #       for each value in type:
-    #         add corresponding value from csv to type attribute value of statcollection
-    #       end
-    #     e.g.
-    #     assault_types.each do |type|
-    #       statsCollection.update(assaultCount: statCollection.assaultCount + file.get_offense(type).value
-    #     etc. for other typesgi
-    #   generate score for that location
-    #   based on stats collection
-    # end
+  end
+
+  desc 'generate scores'
+  task generate_scores: :environment do
+    Location.each do |location|
+      # do the algorithm
+    end
   end
 end
