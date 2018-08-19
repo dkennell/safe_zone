@@ -16,6 +16,9 @@ class HomeController < ApplicationController
     end
   end
 
+  def how_to_help
+  end
+
   def fetch_zipcode
     lat = params[:lat]
     lng = params[:lng]
