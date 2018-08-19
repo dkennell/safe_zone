@@ -63,11 +63,30 @@ h3 {
 	.crime-map-sm {
 		display: none;
 	}
+
+
+	.crime-map-lg {
+		border: solid grey 1px;
+		border-radius: 5%;
+	}
 }
 
 @media (max-width: 600px) { 
 
 	.crime-map-lg {
 		display: none;
+		border: solid grey 1px;
+		border-radius: 5%;
+	}
+
+	.crime-map-sm {
+		margin: auto;
+		border: solid grey 1px;
+		border-radius: 5%;
+	}
+
+	#home-form {
+		padding-top: 50%;
 	}
 }
+
