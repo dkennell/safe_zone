@@ -97,7 +97,7 @@ namespace :safe_zone do
 
   def fetch_crime_data
     p 'Fetching crime data...'
-    URLS.keys.each do |file_name|
+    URLS.keys.each_with_index do |file_name, index|
       open('tmp/' << file_name.to_s, 'wb') do |file|
         file << open(URLS[file_name]).read
       end
@@ -109,24 +109,23 @@ namespace :safe_zone do
         # based on what the assault type is, add a number to the location's field
         case offense
         when *@assault_types
-          location.increment(:assault_count)
+          location.increment!(:assault_count)
         when *@shooting_types
-          location.increment(:shooting_count)
+          location.increment!(:shooting_count)
         when *@rape_types
-          location.increment(:rape_count)
+          location.increment!(:rape_count)
         when *@theft_types
-          location.increment(:theft_count)
+          location.increment!(:theft_count)
         when *@burglary_types
-          location.increment(:burglary_count)
+          location.increment!(:burglary_count)
         when *@robbery_types
-          location.increment(:robbery_count)
+          location.increment!(:robbery_count)
         else     
         end
         print '.'
       end
-      puts "File #{file_name} processed."
+      puts "File #{file_name} processed. (#{index + 1}/#{URLS.size}"
     end
-    Location.find_each(&:save)
   end
 
   def fetch_population_data
@@ -141,6 +140,7 @@ namespace :safe_zone do
 
   def calculate_location_scores
     p 'Calculating scores...'
+    
   end
 end
 
