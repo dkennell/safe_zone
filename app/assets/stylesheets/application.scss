@@ -16,33 +16,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-@media (min-width: 600px) { 
-
-	#home-form {
-		padding-top: 7.5%;
-	}
-
-	#location-show {
-		display: flex;
-		font-size: 1.5em
-	}
-
-	.left-container, .right-container {
-		flex-grow: 1;
-	}
-
-	.crime-map-sm {
-		display: none;
-	}
-}
-
-@media (max-width: 600px) { 
-
-	.crime-map-lg {
-		display: none;
-	}
-}
-
 #home-form{
 	padding-top: 25%;
 }
@@ -69,5 +42,32 @@ h3 {
 
 	ul {
 	  flex-grow: 1;
+	}
+}
+
+@media (min-width: 600px) { 
+
+	#home-form {
+		padding-top: 7.5%;
+	}
+
+	#location-show {
+		display: flex;
+		font-size: 1.5em
+	}
+
+	.left-container, .right-container {
+		flex-grow: 1;
+	}
+
+	.crime-map-sm {
+		display: none;
+	}
+}
+
+@media (max-width: 600px) { 
+
+	.crime-map-lg {
+		display: none;
 	}
 }
