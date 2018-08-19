@@ -5,9 +5,9 @@
 
 <p>The zip code <strong><%= @location.zipcode %></strong> has a safety score of </p>
 
-<h1><%= @location.score %>/100</h1>
+<h1><b><font size="8" color=<%=@location.score_color%>><%= @location.score %></b><font size="6" color="#000000">/100</h1>
 
-<p>This neighborhood is <%= @location.score_phrase %></p>
+<p>This neighborhood is <b><font color=<%=@location.score_color%>><%= @location.score_phrase %></b></font></p>
 <h1>This is a Map!</h1>
 <h1>Even More Map</h1>
 <h1>Map, Map, Map</h1>
@@ -31,5 +31,20 @@
 <p>
     <%= link_to 'How we calculate safety scores', info_path %>
 </p>
+<h3>
+  <b>
+    <font size="8">
+      <font color='#FF3232'>1~10
+      <font color='#FF4130'>11~20
+      <font color='#FF7830'>21~30
+      <font color='#FF8630'>31~40
+      <font color='#FF9730'>41~50
+      <font color='#F4B22E'>51~60
+      <font color='#F7C12E'>61~70
+      <font color='#E5CF2B'>71~80
+      <font color='#8FC46A'>81~90
+      <font color='#5AA863'>91~100
+    </font>
+</h3>
 </div>
 </div>
