@@ -1,33 +1,33 @@
 class Location < ApplicationRecord
   validates_inclusion_of :score, in: 1..100
-  validates :zipcode, :assault_count, :shooting_count, 
-            :rape_count, :theft_count, :burglary_count, 
+  validates :zipcode, :assault_count, :shooting_count,
+            :rape_count, :theft_count, :burglary_count,
             :robbery_count, presence: true
-  
+
   def score_phrase
     case score
     when 1..10
-      'Very very much not safe'
+      'super dangerous'
     when 11..20
-      'Very much not safe'
+      'super dangerous'
     when 21..30
-      'Much not safe'
+      'super sketchy'
     when 31..40
-      'Not safe'
+      'super sketchy'
     when 41..50
-      'Use caution'
+      'rather sketchy'
     when 51.60
-      'Be cautious'
+      'rather sketchy'
     when 61..70
-      'Eh'
+      'somewhat sketchy'
     when 71..80
-      'Hide your wallet'
+      'somewhat sketchy'
     when 81..90
-      'Pretty safe'
+      'usually safe'
     when 91..100
-      'You fuckin did it'
+      'usually safe'
     else
-      'Invalid score'
+      '[invalid score]'
     end
   end
 end
