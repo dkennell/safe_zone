@@ -7,25 +7,25 @@ class Location < ApplicationRecord
   def score_phrase
     case score
     when 1..10
-      'super dangerous'
+      'very dangerous'
     when 11..20
-      'super dangerous'
+      'usually dangerous'
     when 21..30
-      'super sketchy'
+      'mostly dangerous'
     when 31..40
-      'super sketchy'
+      'somewhat dangerous'
     when 41..50
-      'rather sketchy'
-    when 51.60
-      'rather sketchy'
+      'a little dangerous'
+    when 51..60
+      'a little safe'
     when 61..70
-      'somewhat sketchy'
+      'somewhat safe'
     when 71..80
-      'somewhat sketchy'
+      'mostly safe'
     when 81..90
       'usually safe'
     when 91..100
-      'usually safe'
+      'very safe'
     else
       '[invalid score]'
     end
