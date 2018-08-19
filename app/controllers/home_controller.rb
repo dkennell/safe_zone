@@ -21,4 +21,6 @@ class HomeController < ApplicationController
     lng = params[:lng]
     Geocoder.search([lat, lng]).first.postal_code
   end
+
+  def info; end
 end
