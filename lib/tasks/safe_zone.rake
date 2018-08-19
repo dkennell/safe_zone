@@ -100,6 +100,7 @@ namespace :safe_zone do
     fetch_crime_data
     fetch_population_data
     calculate_location_scores
+    setup_polygons
   end
 
   def fetch_crime_data
@@ -168,6 +169,26 @@ namespace :safe_zone do
       ].map{ |el| 1 - el }.inject(:+).to_f / 6) * 100
 
       location.update(score: score)
+    end
+  end
+
+  def setup_polygons
+    file = File.read('app/assets/json/birmingham_polygons.json')
+    data_hash = JSON.parse(file)
+    Location.all.each do |location|
+      zipcode = location.zipcode.to_i
+      zipcode_hash = {}
+      # Find index of zipcode
+      data_hash.dig('features').each do |full_hash|
+        zipcode_hash = full_hash.dig('geometry').dig('coordinates').dig(0) if full_hash.dig('properties').dig('ZIPCODE') == zipcode
+      end
+      vals = {values: []}
+      zipcode_hash.each do |combo|
+        vals[:values] << {lat: combo[1], lng: combo[0]}
+      end
+      if vals[:values].length.positive?
+        location.update_attributes(polygon: vals.to_json)
+      end
     end
   end
 end

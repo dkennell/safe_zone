@@ -61,7 +61,7 @@
             return xmlHttp.responseText;
         }
 
-        let outerCoords = JSON.parse(httpGet('/locations/<%= @location.id %>/polygons')).values;
+        let outerCoords = JSON.parse('<%= raw @location.polygon %>').values;
 
         let center = {lat: 33.518589, lng: -86.810356};
 
