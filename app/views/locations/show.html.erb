@@ -47,7 +47,6 @@
 
 </div>
 </div>
-<script type="text/javascript" language="javascript" src="/assets/json/birmingham_polygons.json"></script>
 <script>
     // This example uses the Google Maps JavaScript API's Data layer
     // to create a rectangular polygon with 2 holes in it.
@@ -55,10 +54,12 @@
         var map_sm = new google.maps.Map(document.querySelector('.crime-map-sm'), {
             zoom: 10,
             center: {lat: 33.518589, lng: -86.810356},
+            disableDefaultUI: true
         });
         var map_lg = new google.maps.Map(document.querySelector('.crime-map-lg'), {
             zoom: 10,
             center: {lat: 33.518589, lng: -86.810356},
+            disableDefaultUI: true
         });
 
         // TODO: get values from an API call, based on current zipcode
@@ -646,7 +647,7 @@
         });
 
         poly_sm.setMap(map_sm);
-        poly_lg.setMap(map_lg)
+        poly_lg.setMap(map_lg);
 
 
         // map.data.add({geometry: new google.maps.Data.Polygon([outerCoords])})
