@@ -69,7 +69,7 @@
             return xmlHttp.responseText;
         }
 
-        let outerCoords = JSON.parse(httpGet('http://localhost:3000/locations/1/polygons')).values;
+        let outerCoords = JSON.parse(httpGet('/locations/<%= @location.id %>/polygons')).values;
 
         let poly_sm = new google.maps.Polygon({
             paths: outerCoords,
