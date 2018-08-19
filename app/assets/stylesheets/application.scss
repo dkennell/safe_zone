@@ -84,6 +84,10 @@ h3 {
 
 @media (max-width: 600px) {
 
+	body {
+	    background-size: auto 100%;
+	}
+
 	.crime-map-lg {
 		display: none;
 		border: solid grey 1px;
