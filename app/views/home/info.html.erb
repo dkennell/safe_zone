@@ -1,48 +1,39 @@
-<div class='container text-center'>
-    <div class='row'>
-        <div class='col-lg-12 translucent div-prettified'>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<div class='container' style="margin-top: 2%">
+    <div class='row text-center'>
+        <div class='col-sm-12 translucent div-prettified'>
             <h1>How we calculate our scores</h1>
             <p>Our safety score is designed to be clear and free of possible bias.
             Therefore, we calculate it from publically available 
             government statistics resources. These resources were found at 
             <a href='https://data.birminghamal.gov/dataset'>Birmingham's own government dataset source</a>,
-            using the four available crime datasets by precinct.</p>
+            using the four available crime datasets by precinct.
+            </p>
 
             <p>From the crime information gathered from these datasets, we consolidate each offense into one 
             of 6 categories:</p>
 
-            <ol>
+            <ul>
                 <li>
-                    Assault
-                    <ul>
-                    </ul>
+                  Assault
                 </li>
                 <li>
                     Rape
-                    <ul>
-                    </ul>
                 </li>
                 <li>
                     Shooting
-                    <ul>
-                    </ul>
                 </li>
                 <li>
                     Robbery
-                    <ul>
-                    </ul>
                 </li>
                 <li>
                     Burglary
-                    <ul>
-                    </ul>
                 </li>
                 <li>
                     Theft
-                    <ul>
-                    </ul>
                 </li>
-            </ol>
+            </ul>
 
             <p>For each of these counts, we divide the number by the population of the zipcode, subtract it from 1, and 
             multiply that value by a constant according to offense prevalence and severity.
@@ -81,13 +72,12 @@
                 </tbody>
             </table>
 
-            <br/>
+            <br>
 
             <p>For example, the modified assault value would be (1 - (assaults / population)) * 60.</p>
-
-            <br/>
-            
+            <br>
             <p>The final score is calculated from the average of all of these numbers.</p>
+          <a href="/"><button class="btn btn-nice btn-lg btn-block">Home</button></a>
         </div>
     </div>
 </div>
