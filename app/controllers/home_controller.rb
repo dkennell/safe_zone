@@ -26,7 +26,7 @@ class HomeController < ApplicationController
   def fetch_zipcode
     lat = params[:lat]
     lng = params[:lng]
-    Geocoder.search([lat, lng]).first.postal_code
+    Geocoder.search([lat, lng])&.first&.postal_code || "35233"
   end
 
   def info; end
