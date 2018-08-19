@@ -109,23 +109,24 @@ namespace :safe_zone do
         # based on what the assault type is, add a number to the location's field
         case offense
         when *@assault_types
-          location.increment!(:assault_count)
+          location.increment(:assault_count)
         when *@shooting_types
-          location.increment!(:shooting_count)
+          location.increment(:shooting_count)
         when *@rape_types
-          location.increment!(:rape_count)
+          location.increment(:rape_count)
         when *@theft_types
-          location.increment!(:theft_count)
+          location.increment(:theft_count)
         when *@burglary_types
-          location.increment!(:burglary_count)
+          location.increment(:burglary_count)
         when *@robbery_types
-          location.increment!(:robbery_count)
+          location.increment(:robbery_count)
         else     
         end
         print '.'
       end
       puts "File #{file_name} processed."
     end
+    Location.find_each(&:save)
   end
 
   def fetch_population_data
