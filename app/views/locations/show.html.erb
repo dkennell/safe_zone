@@ -6,11 +6,11 @@
 	<!-- left and right containers for desktop view only -->
 	<div class="left-container">
 	<div class="location-summary">
-		<p>The zip code <strong><%= @location.zipcode %></strong> has a safety score of </p>
+		<p>The zipcode <strong><%= @location.zipcode %></strong> has a safety score of </p>
 
-		<h1><%= @location.score %>/100</h1>
+		<h1><b><font size="8" color=<%=@location.score_color%>><%= @location.score %></b></font><font size="5" color="#000000">/100</font></h1>
 
-		<p>This neighborhood is <%= @location.score_phrase %></p>
+		<p>This area is <b><font color=<%=@location.score_color%>><%= @location.score_phrase %></b></font>.</p>
 	</div>
 
 	<div class="crime-map-sm" style="height: 300px; width: 80%">
@@ -36,7 +36,7 @@
 		<button>Want to help improve this score?</button>
 		<br>
 		<br>
-		<p><a href="#">How we calculate safety scores</a></p>
+		<p><%= link_to 'How we calculate safety scores', info_path %></p>
 	</div>
 </div>
 

@@ -165,7 +165,7 @@ namespace :safe_zone do
         (robberies.to_f / pop) * ROBBERY_COEF,
         (burgs.to_f / pop) * BURGLARY_COEF,
         (thefts.to_f / pop) * THEFT_COEF
-      ].map!{ |el| 1 - el }.inject(:+).to_f / 6) * 100
+      ].map{ |el| 1 - el }.inject(:+).to_f / 6) * 100
 
       location.update(score: score)
     end
