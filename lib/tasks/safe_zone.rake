@@ -97,7 +97,7 @@ namespace :safe_zone do
 
   def fetch_crime_data
     p 'Fetching crime data...'
-    URLS.keys.each do |file_name|
+    URLS.keys.each_with_index do |file_name, index|
       open('tmp/' << file_name.to_s, 'wb') do |file|
         file << open(URLS[file_name]).read
       end
@@ -124,7 +124,7 @@ namespace :safe_zone do
         end
         print '.'
       end
-      puts "File #{file_name} processed."
+      puts "File #{file_name} processed. (#{index + 1}/#{URLS.size}"
     end
   end
 
@@ -140,6 +140,7 @@ namespace :safe_zone do
 
   def calculate_location_scores
     p 'Calculating scores...'
+    
   end
 end
 
