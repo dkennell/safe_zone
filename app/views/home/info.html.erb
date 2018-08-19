@@ -1,1 +1,94 @@
-<h1>NO<h1>
+<div class='container text-center'>
+    <div class='row'>
+        <div class='col-lg-12 translucent div-prettified'>
+            <h1>How we calculate our scores</h1>
+            <p>Our safety score is designed to be clear and free of possible bias.
+            Therefore, we calculate it from publically available 
+            government statistics resources. These resources were found at 
+            <a href='https://data.birminghamal.gov/dataset'>Birmingham's own government dataset source</a>,
+            using the four available crime datasets by precinct.</p>
+
+            <p>From the crime information gathered from these datasets, we consolidate each offense into one 
+            of 6 categories:</p>
+
+            <ol>
+                <li>
+                    Assault
+                    <ul>
+                    </ul>
+                </li>
+                <li>
+                    Rape
+                    <ul>
+                    </ul>
+                </li>
+                <li>
+                    Shooting
+                    <ul>
+                    </ul>
+                </li>
+                <li>
+                    Robbery
+                    <ul>
+                    </ul>
+                </li>
+                <li>
+                    Burglary
+                    <ul>
+                    </ul>
+                </li>
+                <li>
+                    Theft
+                    <ul>
+                    </ul>
+                </li>
+            </ol>
+
+            <p>For each of these counts, we divide the number by the population of the zipcode, subtract it from 1, and 
+            multiply that value by a constant according to offense prevalence and severity.
+            For example, the assault multiplier is a bit higher than the theft multiplier.</p>
+
+            <table class='text-center' style='margin: 0px auto'>
+                <tbody>
+                    <tr>
+                        <th scope='col'>Offense</th>
+                        <th scope='col'>Coefficient</th>
+                    </tr>
+                    <tr>
+                        <td>Asssault</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>Rape</td>
+                        <td>55</td>
+                    </tr>
+                    <tr>
+                        <td>Shooting</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Robbery</td>
+                        <td>45</td>
+                    </tr>
+                    <tr>
+                        <td>Burglary</td>
+                        <td>40</td>
+                    </tr>
+                    <tr>
+                        <td>Theft</td>
+                        <td>35</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br/>
+
+            <p>For example, the modified assault value would be (1 - (assaults / population)) * 60.</p>
+
+            <br/>
+            
+            <p>The final score is calculated from the average of all of these numbers.</p>
+        </div>
+    </div>
+</div>
+
