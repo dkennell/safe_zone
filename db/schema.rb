@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180818225514) do
+ActiveRecord::Schema.define(version: 20180819141506) do
 
   create_table "locations", force: :cascade do |t|
     t.integer "zipcode"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20180818225514) do
     t.integer "burglary_count", default: 0
     t.integer "robbery_count", default: 0
     t.integer "population"
+    t.text "polygon"
   end
 
 end
