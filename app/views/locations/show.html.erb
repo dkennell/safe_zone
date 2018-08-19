@@ -1,35 +1,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <div class="container">
-<div id="location-show" class="row text-center">
+	<div id="location-show" class="row text-center">
 
-<p>The zip code <strong><%= @location.zipcode %></strong> has a safety score of </p>
+	<!-- left and right containers for desktop view only -->
+	<div class="left-container">
+	<div class="location-summary">
+		<p>The zip code <strong><%= @location.zipcode %></strong> has a safety score of </p>
 
-<h1><b><font size="8" color=<%=@location.score_color%>><%= @location.score %></b><font size="6" color="#000000">/100</h1>
+		<h1><%= @location.score %>/100</h1>
 
-<p>This neighborhood is <b><font color=<%=@location.score_color%>><%= @location.score_phrase %></b></font>.</p>
-<h1>This is a Map!</h1>
-<h1>Even More Map</h1>
-<h1>Map, Map, Map</h1>
+		<p>This neighborhood is <%= @location.score_phrase %></p>
+	</div>
 
-<h3>Statistics</h3>
-<div class="stats-container">
-<ul>
-  <li>Thefts:  <%= @location.theft_count %></li>
-  <li>Break-ins:  <%= @location.burglary_count %></li>
-  <li>Robberies: <%= @location.robbery_count %></li>
-</ul>
-<ul>
-  <li>Shootings:  <%= @location.shooting_count %></li>
-  <li>Rapes: <%= @location.rape_count %></li>
-	<li>Assaults: <%= @location.assault_count %></li>
-</ul>
+	<div class="crime-map-sm">
+		<h1>This is a Map!</h1>
+		<h1>Even More Map</h1>
+		<h1>Map, Map, Map</h1>
+	</div>
+
+	<div class="location-statistics">
+		<h3>Statistics</h3>
+		<div class="stats-container">
+			<ul>
+			    <li>Thefts:  <%= @location.theft_count %></li>
+			    <li>Robberies: <%= @location.robbery_count %></li>
+			    <li>Break-ins:  <%= @location.burglary_count %></li>
+			</ul>
+			<ul>
+				<li>Assaults: <%= @location.assault_count %></li>
+			    <li>Rapes: <%= @location.rape_count %></li>
+			    <li>Shootings:  <%= @location.shooting_count %></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="links">
+		<button>Want to help improve this score?</button>
+		<br>
+		<br>
+		<p><a href="#">How we calculate safety scores</a></p>
+	</div>
 </div>
-<button>Want to help improve this score?</button>
-<br>
-<br>
-<p>
-    <%= link_to 'How we calculate safety scores', info_path %>
-</p>
+
+<div class="right-container">
+	<div class="crime-map-lg">
+		<h1>This is a Map!</h1>
+		<h1>Even More Map</h1>
+		<h1>Map, Map, Map</h1>
+	</div>
+</div>
+
 </div>
 </div>
