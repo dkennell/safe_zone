@@ -1,18 +1,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <form id="home-form" class="form-inline">
-  <div class="container">
-    <div class="row text-center">
+  <div class="container text-center">
+    <div class="row">
       <div class="col-sm-6 col-sm-offset-3 translucent div-prettified">
         <h1><em>Keep Safe</em></h1>
+        <br/>
         <div class="form-group text-center">
             <input type="tel" name="zipcode" pattern=".{5}" class="form-control input-nice text-center" id="zip-input" placeholder="Zipcode" title="Please input 5 digits">
             <input type="submit" value="GO" class="btn btn-nice" id="go-btn">
         </div>
         <div class="col-sm-12">
-          <h2>or</h2>
-          <button type="button" value="Test Get Location" class="btn btn-nice" onclick="setLocation()" id="get-zip">Use
-            My Location
+          <h3>or</h3>
+          <br/>
+          <button type="button" value="Test Get Location" class="btn btn-nice" onclick="setLocation()" id="get-zip">
+            Use My Location
           </button>
           <input type="text" name="lat" class="hidden" id="lat">
           <input type="text" name="lng" class="hidden" id="lng">
