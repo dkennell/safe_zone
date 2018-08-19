@@ -132,3 +132,12 @@ h3 {
   text-shadow: -1px -1px 0 darken(#5AA863, 9.5%);
   transition: all 250ms linear;
 }
+
+.input-nice {
+  background: darken(#ffffff, 3%);
+  font-weight: 900;
+  letter-spacing: 1px;
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+}
