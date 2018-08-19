@@ -13,7 +13,7 @@
 		<p>This neighborhood is <%= @location.score_phrase %></p>
 	</div>
 
-	<div class="crime-map-sm" style="height: 400px">
+	<div class="crime-map-sm" style="height: 300px; width: 80%">
 	</div>
 
 	<div class="location-statistics">
@@ -36,7 +36,7 @@
 		<button>Want to help improve this score?</button>
 		<br>
 		<br>
-		<p><a href="#">How we calculate safety scores</a></p>
+		<p><%= link_to 'How we calculate safety scores', info_path %></p>
 	</div>
 </div>
 

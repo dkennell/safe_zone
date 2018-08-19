@@ -1,7 +1,7 @@
 require 'open-uri'
 
 namespace :safe_zone do
-  @assault_types = [
+  ASSAULT_TYPES = [
     'Assault  1st Degree',
     'Assault  2nd Degree',
     'Attempt to Commit Murder',
@@ -15,7 +15,7 @@ namespace :safe_zone do
     'Child Abuse-Aggravated-Family'
   ].freeze
 
-  @theft_types = [
+  THEFT_TYPES = [
     'Auto Theft - 1st Degree',
     'Shoplifting - 4th Degree',
     'Shoplifting 3rd Degree',
@@ -52,7 +52,7 @@ namespace :safe_zone do
     'Theft-From Yards-4th Degree'
   ].freeze
 
-  @burglary_types = [
+  BURGLARY_TYPES = [
     'Burglary (Business) 2nd Degree',
     'Burglary (Business) 3rd Degree',
     'Burglary (Residence) 1st Degree',
@@ -62,18 +62,18 @@ namespace :safe_zone do
     'Domestic Burglary - 3rd Degree'
   ].freeze
 
-  @robbery_types = [
+  ROBBERY_TYPES = [
     'Robbery 1st Degree',
     'Robbery 2nd Degree',
     'Robbery 3rd Degree'
   ].freeze
 
-  @shooting_types = [
+  SHOOTING_TYPES = [
     'Shooting Into Occupied Building',
     'Throwing/Shooting into Occupied Vehicle'
   ].freeze
 
-  @rape_types = [
+  RAPE_TYPES = [
     'Rape - 1st Degree',
     'Rape - 2nd Degree',
     'Sodomy - 1st Degree',
@@ -86,6 +86,13 @@ namespace :safe_zone do
     'east.csv': 'https://data.birminghamal.gov/dataset/0a22b9f3-eb07-40f6-b52d-d31ff43c6b54/resource/9d13f610-5538-4d68-81f8-5a0fb514512a/download/open-data-portal---east-thru-jun-30-2018-csv.csv',
     'west.csv': 'https://data.birminghamal.gov/dataset/b3fab069-4df4-4335-b972-eb2fef7ce218/resource/83d01fdd-222d-47b0-b50b-31cfe88b7d0f/download/open-data-portal---west-thru-jun-30-2018-csv.csv'
   }
+
+  ASSAULT_COEF = 60
+  RAPE_COEF = 55
+  SHOOTING_COEF = 50
+  ROBBERY_COEF = 45
+  BURGLARY_COEF = 40
+  THEFT_COEF = 35
 
   desc "fetch all data and generate scores"
   task fetch_data: :environment do
@@ -108,23 +115,23 @@ namespace :safe_zone do
         location = Location.find_or_create_by(zipcode: zipcode)
         # based on what the assault type is, add a number to the location's field
         case offense
-        when *@assault_types
+        when *ASSAULT_TYPES
           location.increment!(:assault_count)
-        when *@shooting_types
+        when *SHOOTING_TYPES
           location.increment!(:shooting_count)
-        when *@rape_types
+        when *RAPE_TYPES
           location.increment!(:rape_count)
-        when *@theft_types
+        when *THEFT_TYPES
           location.increment!(:theft_count)
-        when *@burglary_types
+        when *BURGLARY_TYPES
           location.increment!(:burglary_count)
-        when *@robbery_types
+        when *ROBBERY_TYPES
           location.increment!(:robbery_count)
         else     
         end
         print '.'
       end
-      puts "File #{file_name} processed. (#{index + 1}/#{URLS.size}"
+      puts "File #{file_name} processed. (#{index + 1}/#{URLS.size})"
     end
   end
 
@@ -140,7 +147,28 @@ namespace :safe_zone do
 
   def calculate_location_scores
     p 'Calculating scores...'
-    
+    Location.find_each do |location|
+      pop = location.population
+      next if pop.blank?
+
+      assaults = location.assault_count
+      rapes = location.rape_count
+      shootings = location.shooting_count
+      robberies = location.robbery_count
+      burgs = location.burglary_count
+      thefts = location.theft_count
+
+      score = ([
+        (assaults.to_f / pop) * ASSAULT_COEF,
+        (rapes.to_f / pop) * RAPE_COEF,
+        (shootings.to_f / pop) * SHOOTING_COEF,
+        (robberies.to_f / pop) * ROBBERY_COEF,
+        (burgs.to_f / pop) * BURGLARY_COEF,
+        (thefts.to_f / pop) * THEFT_COEF
+      ].map{ |el| 1 - el }.inject(:+).to_f / 6) * 100
+
+      location.update(score: score)
+    end
   end
 end
 
