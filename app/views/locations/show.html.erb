@@ -1,51 +1,52 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <div class="container">
-	<div id="location-show" class="row text-center">
+  <div id="location-show" class="row text-center">
 
-	<!-- left and right containers for desktop view only -->
-	<div class="left-container">
-	<div class="location-summary">
-		<p>The zipcode <strong><%= @location.zipcode %></strong> has a safety score of </p>
+    <!-- left and right containers for desktop view only -->
+    <div class="left-container translucent div-prettified">
+      <div class="location-summary">
+        <p>The zipcode <strong><%= @location.zipcode %></strong> has a safety score of </p>
 
-		<h1><b><font size="8" color=<%=@location.score_color%>><%= @location.score %></b></font><font size="5" color="#000000">/100</font></h1>
+        <h1><b><font size="8" color=<%= @location.score_color %>><%= @location.score %></b></font>
+          <font size="5" color="#000000">/100</font></h1>
 
-		<p>This area is <b><font color=<%=@location.score_color%>><%= @location.score_phrase %></b></font>.</p>
-	</div>
+        <p>This area is <b><font color=<%= @location.score_color %>><%= @location.score_phrase %></b></font>.</p>
+      </div>
 
-	<div class="crime-map-sm" style="height: 300px; width: 80%">
-	</div>
+      <div class="crime-map-sm" style="height: 300px; width: 80%">
+      </div>
 
-	<div class="location-statistics">
-		<h3>2018 Statistics</h3>
-		<div class="stats-container">
-			<ul>
-			    <li>Thefts:  <%= @location.theft_count %></li>
-			    <li>Robberies: <%= @location.robbery_count %></li>
-			    <li>Break-ins:  <%= @location.burglary_count %></li>
-			</ul>
-			<ul>
-				  <li>Assaults: <%= @location.assault_count %></li>
-			    <li>Rapes: <%= @location.rape_count %></li>
-			    <li>Shootings:  <%= @location.shooting_count %></li>
-			</ul>
-		</div>
-	</div>
+      <div class="location-statistics">
+        <h3>2018 Statistics</h3>
+        <div class="stats-container">
+          <ul>
+            <li>Thefts:  <%= @location.theft_count %></li>
+            <li>Robberies: <%= @location.robbery_count %></li>
+            <li>Break-ins:  <%= @location.burglary_count %></li>
+          </ul>
+          <ul>
+            <li>Assaults: <%= @location.assault_count %></li>
+            <li>Rapes: <%= @location.rape_count %></li>
+            <li>Shootings:  <%= @location.shooting_count %></li>
+          </ul>
+        </div>
+      </div>
 
-	<div class="links">
-		<button>Want to help improve this score?</button>
-		<br>
-		<br>
-		<p><%= link_to 'How we calculate safety scores', info_path %></p>
-	</div>
-</div>
+      <div class="links">
+        <button>Want to help improve this score?</button>
+        <br>
+        <br>
+        <p><%= link_to 'How we calculate safety scores', info_path %></p>
+      </div>
+    </div>
 
-<div class="right-container">
-	<div class="crime-map-lg" style="height: 400px">
-	</div>
-</div>
+    <div class="right-container div-prettified">
+      <div class="crime-map-lg" style="height: 400px">
+      </div>
+    </div>
 
-</div>
+  </div>
 </div>
 <script>
     // This example uses the Google Maps JavaScript API's Data layer
@@ -62,7 +63,7 @@
 
         let center = {lat: 33.518589, lng: -86.810356};
 
-        if (outerCoords[0] !== undefined){
+        if (outerCoords[0] !== undefined) {
             center = outerCoords[0]
         }
 
@@ -79,11 +80,11 @@
 
         let poly_sm = new google.maps.Polygon({
             paths: outerCoords,
-            strokeColor:'#FF0000',
-            strokeOpacity:0.8,
-            strokeWeight:3,
-            fillColor:'#FF0000',
-            fillOpacity:0.35
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 3,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35
         });
 
         let poly_lg = new google.maps.Polygon({
@@ -97,7 +98,7 @@
 
         var current_location = null;
 
-        function setMaps(){
+        function setMaps() {
             // Add markers to maps
             if (current_location) {
                 let marker_sm = new google.maps.Marker({
@@ -122,14 +123,12 @@
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
-                current_location = { lat: position.coords.latitude, lng: position.coords.longitude };
+                current_location = {lat: position.coords.latitude, lng: position.coords.longitude};
                 setMaps();
             });
         } else {
             alert("Geolocation is not supported by this browser.");
         }
-
-
 
 
     }

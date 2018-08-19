@@ -2,19 +2,16 @@
 
 <form id="home-form">
   <div class="container">
-    <div class="row text-center translucent">
-      <div class="col-sm-12">
+    <div class="row text-center">
+      <div class="col-sm-6 col-sm-offset-3 translucent div-prettified">
         <h1><em>Keep Safe</em></h1>
         <input type="tel" name="zipcode" pattern=".{5}" class="text-center" id="zip-input" placeholder="Enter Zipcode" title="Please input 5 digits">
         <input type="submit" value="GO" class="btn btn-nice" id="go-btn">
-      </div>
         <h2>or</h2>
         <button type="button" value="Test Get Location" class="btn btn-nice" onclick="setLocation()" id="get-zip">Use My Location</button>
         <input type="text" name="lat" class="hidden" id="lat">
         <input type="text" name="lng" class="hidden" id="lng">
-        <br>
-        <br>
-        <br>
+      </div>
     </div>
   </div>
 </form>
