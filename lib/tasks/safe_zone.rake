@@ -92,10 +92,11 @@ namespace :safe_zone do
     Location.delete_all
     fetch_crime_data
     fetch_population_data
-    generate_location_scores
+    calculate_location_scores
   end
 
   def fetch_crime_data
+    p 'Fetching crime data...'
     URLS.keys.each do |file_name|
       open('tmp/' << file_name.to_s, 'wb') do |file|
         file << open(URLS[file_name]).read
@@ -128,6 +129,7 @@ namespace :safe_zone do
   end
 
   def fetch_population_data
+    p 'Fetching population data...'
     CSV.foreach('csv/population_data.csv') do |row|
       location = Location.find_by(zipcode: row[0])
       if location.present?
@@ -136,7 +138,8 @@ namespace :safe_zone do
     end
   end
 
-  def generate_location_scores
+  def calculate_location_scores
+    p 'Calculating scores...'
   end
 end
 
