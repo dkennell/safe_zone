@@ -16,6 +16,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+html, body {
+	height: 100%;
+}
+
+body {
+		background-image: url('birmingham.jpg');
+    background-repeat: no-repeat;
+    background-position:center center;
+    background-size: 100% auto;
+}
+
 #home-form{
 	padding-top: 25%;
 }
